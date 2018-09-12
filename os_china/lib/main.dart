@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter/cupertino.dart';
 //void main() => runApp(new MyApp());
 //
 //class MyApp extends StatelessWidget {
@@ -84,6 +84,17 @@ class MyApp extends StatefulWidget {
 }
 
 class MyOSCClientState extends State<MyApp> {
+  int _tabIndex = 0;
+  var _body = new IndexedStack(
+    children: <Widget>[
+      new NewsListPage(),
+      new TweetsListPage(),
+      new DiscoveryPage(),
+      new MyInfoPage()
+    ],
+    index: _tabIndex,
+  );
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -98,6 +109,10 @@ class MyOSCClientState extends State<MyApp> {
           ),
           iconTheme: new IconThemeData(color: Colors.white),
         ),
+        body: _body,
+        bottomNavigationBar: new CupertinoTabBar(
+          items: ,
+        )
       ),
     );
   }
