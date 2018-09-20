@@ -111,9 +111,54 @@ class MyOSCClientState extends State<MyApp> {
         ),
         body: _body,
         bottomNavigationBar: new CupertinoTabBar(
-          items: ,
+          items: getBottomNavItems(),
+          currentIndex: _tabIndex,
+          onTap: (index) {
+            setState(() {
+              _tabIndex = index
+            });
+          },
         )
       ),
     );
   }
+
+  List<BottomNavigationBarItem> getBottomNavItems() {
+    List<BottomNavigationBarItem> list = new List();
+    for (int i = 0; i < 4; i++) {
+      list.add(new BottomNavigationBarItem(
+          icon: getTabIcon(i),
+          title: getTabTitle(i)));
+    }
+    return list;
+   }
+
+  Image getTabIcon(int curIndex) {
+    if (curIndex == _tabIndex) {
+      return tabImages[curIndex][1];
+    }
+    return tabImages[curIndex][0];
+  }
+
+  Text getTabTitle(int curIndex) {
+      return new Text(
+        appBarTitles[curIndex],
+        style: getTabTextStyle(curIndex),
+      );
+  }
+
+  TextStyle getTabTextStyle(int curIndex) {
+    if (curIndex == _tabIndex) {
+      return tabTextStyleSelected;
+    }
+    return tabTextStyleNormal;
+  }
+
+
+
 }
+
+
+
+
+
